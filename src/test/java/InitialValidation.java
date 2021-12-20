@@ -2,10 +2,10 @@ import org.junit.Test;
 
 import static org.junit.Assert.assertTrue;
 
-public class ValidacionInicial {
+public class InitialValidation {
 
     @Test
-    public void trueDeberiaSerTrue() {
+    public void trueShouldBeTrue() {
         assertTrue(true);
     }
 }
