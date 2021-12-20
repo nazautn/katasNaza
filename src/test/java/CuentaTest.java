@@ -33,7 +33,7 @@ public class CuentaTest {
     }
 
     @Test
-    public void deboPoderDepositarEnMiCuentaYRecuperarElSaldoNuevo(){
+    public void deboPoderDepositarEnMiCuentaYRecuperarElSaldoNuevo() {
         Float saldoInicial = 100F;
         Float saldoAAgregar = 50F;
         Cuenta cuenta = new Cuenta(saldoInicial);
@@ -42,5 +42,17 @@ public class CuentaTest {
         Float saldo = cuenta.getSaldo();
 
         assertThat(saldo).isEqualTo(saldoAAgregar + saldoInicial);
+    }
+
+    @Test
+    public void deboPoderExtraerDineroDeMieCuentaYRecuperarElSaldoNuervo() {
+        Float saldoInicial = 100F;
+        Float saldoAExtraer = 50F;
+        Cuenta cuenta = new Cuenta(saldoInicial);
+
+        cuenta.extraer(saldoAExtraer);
+        Float saldo = cuenta.getSaldo();
+
+        assertThat(saldo).isEqualTo(saldoInicial - saldoAExtraer);
     }
 }

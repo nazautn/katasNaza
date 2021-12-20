@@ -17,4 +17,9 @@ public class Cuenta {
     public void setSaldo(Float saldo) {
         this.saldo = saldo;
     }
+
+    public void extraer(Float saldoAExtraer) {
+        Float saldoNuevo = this.getSaldo() - saldoAExtraer;
+        this.setSaldo(saldoNuevo);
+    }
 }
