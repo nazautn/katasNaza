@@ -1,4 +1,3 @@
-import model.Cuenta;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.MockitoAnnotations;

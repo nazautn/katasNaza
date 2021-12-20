@@ -1,5 +1,3 @@
-package model;
-
 public class Cuenta {
     private Float saldo;
 
