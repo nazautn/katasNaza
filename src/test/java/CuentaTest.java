@@ -2,6 +2,10 @@ import org.junit.Before;
 import org.junit.Test;
 import org.mockito.MockitoAnnotations;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.Assert.assertEquals;
 
@@ -54,5 +58,18 @@ public class CuentaTest {
         Float saldo = cuenta.getSaldo();
 
         assertThat(saldo).isEqualTo(saldoInicial - saldoAExtraer);
+    }
+
+    @Test
+    public void deboPoderImprimirElBalanceDeLaCuenta() {
+        Float saldoInicial = 100F;
+        Cuenta cuenta = new Cuenta(saldoInicial);
+
+        String balance = cuenta.getBalanceImprimible();
+
+        assertThat(balance).contains(Cuenta.ENCABEZADO_BALANCE);
+        DateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
+        String hoy = dateFormat.format(new Date());
+        assertThat(balance).contains(String.format("%s +100.0 100.0", hoy));
     }
 }
