@@ -70,6 +70,38 @@ public class CuentaTest {
         assertThat(balance).contains(Cuenta.ENCABEZADO_BALANCE);
         DateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
         String hoy = dateFormat.format(new Date());
-        assertThat(balance).contains(String.format("%s +100.0 100.0", hoy));
+        assertThat(balance).contains(String.format("%s \t +100.0 \t 100.0", hoy));
+    }
+
+    @Test
+    public void luegoDeDepositarSeDebeVerLaActualizacionDelBalance() {
+        Float saldoInicial = 100F;
+        Cuenta cuenta = new Cuenta(saldoInicial);
+        cuenta.depositar(200F);
+
+        String balance = cuenta.getBalanceImprimible();
+
+        assertThat(balance).contains(Cuenta.ENCABEZADO_BALANCE);
+        DateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
+        String hoy = dateFormat.format(new Date());
+        assertThat(balance).contains(String.format("%s \t +100.0 \t 100.0", hoy));
+        assertThat(balance).contains(String.format("%s \t +200.0 \t 300.0", hoy));
+        System.out.println(balance);
+    }
+
+    @Test
+    public void luegoDeExtraerSeDebeVerLaActualizacionDelBalance() {
+        Float saldoInicial = 100F;
+        Cuenta cuenta = new Cuenta(saldoInicial);
+        cuenta.extraer(200F);
+
+        String balance = cuenta.getBalanceImprimible();
+
+        assertThat(balance).contains(Cuenta.ENCABEZADO_BALANCE);
+        DateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
+        String hoy = dateFormat.format(new Date());
+        assertThat(balance).contains(String.format("%s \t +100.0 \t 100.0", hoy));
+        assertThat(balance).contains(String.format("%s \t -200.0 \t -100.0", hoy));
+        System.out.println(balance);
     }
 }
