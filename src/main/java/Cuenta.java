@@ -12,9 +12,8 @@ public class Cuenta {
 
     public Cuenta(Float saldo) {
         this.saldo = saldo;
-        RegistroBalance registro = new RegistroBalance(new Date(), saldo, saldo);
         this.balance = new ArrayList<>();
-        balance.add(registro);
+        balance.add(new RegistroBalance(new Date(), saldo, saldo));
     }
 
     public void depositar(Float saldoAAgregar) {
@@ -34,7 +33,7 @@ public class Cuenta {
     }
 
     private String imprimir(List<RegistroBalance> balance) {
-        String resultado = "";
+        StringBuilder resultado = new StringBuilder();
         DateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
         for(RegistroBalance registro : balance){
             String fechaString = dateFormat.format(registro.getFecha());
@@ -44,9 +43,9 @@ public class Cuenta {
                 montoString = "+" + montoString;
             }
 
-            resultado += fechaString + " \t " + montoString + " \t " + registro.getBalance() + "\n";
+            resultado.append(fechaString).append(" \t ").append(montoString).append(" \t ").append(registro.getBalance()).append("\n");
         }
-        return resultado;
+        return resultado.toString();
     }
 
     public Float getSaldo() {
@@ -56,5 +55,4 @@ public class Cuenta {
     public void setSaldo(Float saldo) {
         this.saldo = saldo;
     }
-
 }
